@@ -36,6 +36,13 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    # This fixes errors in 7.0.3 not observed in 6 or earlier
+    redirect_to root_path, status: :see_other
+  end
+
   private
 
   def post_params
