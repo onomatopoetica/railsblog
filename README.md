@@ -20,7 +20,7 @@ Rails blog is built with Ruby 3.0 and Ruby on Rails 7.0.3. A user can create, re
 
 ## Lessons Learned
 
-I did this project in rails 7.0.3 but the tutorial I followed was running 5.1.4. There were a couple of little differences I had to work through in order to get the project to correctly run without errors. I though I'd share how I resolved them here:
+Being only my second rails project I've done, I followed a tutorial by [Andy Leverenz](Web-Crunch.com). If you're also new to Rails I highly recommend his tutorials. He's extremely knowledgeable and delivers his content with great insight that I found extremely helpful. I did this project in rails 7.0.3 but the tutorial I followed was running 5.1.4. There were a couple of little differences I had to work through in order to get the project to correctly run without errors. I though I'd share how I resolved them here:
 *  The destroy action in this project ended with a `redirect_to` (some browsers will redirect to a new location with the `delete` method causing errors), so *make sure* to add `status: :see_other parameter to redirect_to`, as referenced in [Rails Guides](https://guides.rubyonrails.org/getting_started.html#deleting-an-article).
 *  Related to this issue, on the `link_to Delete` the `delete method` is written differently in rails 7 using the new default component introduced called *Turbo*. Adding a confirmation prompt to a button looked like the following: 
     *  `data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}`
