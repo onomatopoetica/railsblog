@@ -17,6 +17,14 @@
 
 ## About The Project
 Rails blog is built with Ruby 3.0 and Ruby on Rails 7.0.3. A user can create, read, edit and delete blog entries in a simple blog environment.
+
+## Lessons Learned
+
+* I did this project in rails 7.0.3 but the tutorial I followed was running 5.1.4. There were a couple of little differences I had to work through in order to get the project to correctly run without errors. I though I'd share how I resolved them here:
+    *  The destroy action in this project ended with a `redirect_to` (some browsers will redirect to a new location with the `delete` method causing errors), so *make sure* to add `status: :see_other parameter to redirect_to`, like the following [Rails Guides suggests](https://guides.rubyonrails.org/getting_started.html#deleting-an-article).
+    *  Related to this issue, on the `link_to Delete` the `delete method` is written differently in rails 7 using the new default component introduced called Turbo. Adding a confirmation prompt to a button looked like the following: 
+        *  `data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}`
+
 ## Demo
 
 #### The following is a screenshot of the application and overview of its functionality (coming soon): <br>
