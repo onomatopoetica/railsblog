@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :find_post, only: [:show, :update, :edit, :destroy]
 
   def index
     @posts = Post.all.order("created_at DESC")
@@ -19,12 +20,9 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
-
     if @post.update(post_params)
       redirect_to @post
     else
@@ -33,11 +31,9 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
   end
 
   def destroy
-    @post = Post.find(params[:id])
     @post.destroy
     # This fixes errors in 7.0.3 not observed in 6 or earlier
     redirect_to root_path, status: :see_other
@@ -49,4 +45,7 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :content)
   end
 
+  def find_post
+    @post = Post.find(params[:id])
+  end
 end
